@@ -7,6 +7,9 @@ nltk.download('punkt')
 import requests
 from twitter import OAuth, Twitter
 
+from openpyxl import load_workbook
+import hashlib
+
 import tokens
 
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
@@ -23,6 +26,16 @@ t = Twitter(auth=oauth)
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36',
 }
+
+filepath = 'titles.xlsx'
+
+def check_dup(title):
+    wb = load_workbook(filepath)
+    sheet = wb.active
+    max_row = sheet.max_row
+    key = hashlib.md5(title.encode())
+    print(key.hexdigest())
+
 
 def scrape_sd():
     url = 'https://www.sciencedaily.com/news/space_time'
@@ -72,4 +85,5 @@ def main():
             except StopIteration:
                 news_iterators[i] = globals()[news_sources[i]]()
 
-main()
+check_dup('hskdfdhjdhj')
+#main()
