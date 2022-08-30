@@ -29,12 +29,23 @@ HEADERS = {
 
 filepath = 'titles.xlsx'
 
-def check_dup(title):
+def check_dup(key):
     wb = load_workbook(filepath)
     sheet = wb.active
     max_row = sheet.max_row
-    key = hashlib.md5(title.encode())
-    print(key.hexdigest())
+    for r in range (1, max_row+1):
+        cell_obj = sheet.cell(row = r, column = 1)
+        if cell_obj.value == key:
+            return True
+    return False
+
+def add_key(key):
+    wb = load_workbook(filepath)
+    sheet = wb.active
+    max_row = sheet.max_row
+    sheet.cell(row=max_row+1, column=1).value = key
+    wb.save(filepath)
+
 
 
 def scrape_sd():
@@ -49,9 +60,16 @@ def scrape_sd():
     for headline in headlines:
         title = headline.text.strip()
         link = 'https://www.sciencedaily.com' + headline['href']
-        #print(title)
-        #print(link)
-        yield '"%s" %s' % (title, link)
+        tweet = (title, link)
+        yield tweet
+        #key = hashlib.md5(title.encode())
+        #hex_key = key.hexdigest()
+        #if (check_dup(hex_key)):
+        #    print(check_dup(hex_key))
+        #    continue
+        #else:
+        #    add_key(hex_key)
+        #    yield '"%s" %s' % (title, link)
         
 
 def scrape_sn():
@@ -65,9 +83,16 @@ def scrape_sn():
         headline = article.find('h3').find('a')
         title = headline.text.strip()
         link = headline['href']
-        #print(title)
-        #print(link)
-        yield '"%s" %s' % (title, link)
+        tweet = (title, link)
+        yield tweet
+        
+        #key = hashlib.md5(title.encode())
+        #hex_key = key.hexdigest()
+        #if (check_dup(hex_key)):
+        #    continue
+        #else:
+        #    add_key(hex_key)
+        #    yield '"%s" %s' % (title, link)
 
 
 def main():
@@ -80,10 +105,23 @@ def main():
         for i, iterator in enumerate(news_iterators):
             try:
                 tweet = next(iterator)
-                print(tweet, end='\n\n')
+                title = tweet[0]
+                link = tweet[1]
+                key = hashlib.md5(title.encode())
+                hex_key = key.hexdigest()
+                if (check_dup(hex_key)):
+                    print(check_dup(hex_key))
+                    continue
+                else:
+                    add_key(hex_key)
+                    final = '"%s" %s' % (title, link)
+                    print(final, end='\n\n')
                 #time.sleep(10)
             except StopIteration:
                 news_iterators[i] = globals()[news_sources[i]]()
 
-check_dup('hskdfdhjdhj')
-#main()
+wb = load_workbook(filepath)
+sheet = wb.active
+max_row = sheet.max_row
+print(max_row)
+# main()
