@@ -110,7 +110,7 @@ def main():
                 key = hashlib.md5(title.encode())
                 hex_key = key.hexdigest()
                 if (check_dup(hex_key)):
-                    print(check_dup(hex_key))
+                    #print(check_dup(hex_key))
                     continue
                 else:
                     add_key(hex_key)
