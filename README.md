@@ -8,12 +8,16 @@ The bot also implements a system to prevent duplicate tweets. By converting the 
 
 The headlines are tweeted in a revolving fashion via python generator functions.
 
-The following links were used as resources;
+The following links were used as resources:
+
 https://pythonprogramming.org/how-to-create-a-webscraping-twitter-bot-in-python/
+
 https://www.digitalocean.com/community/tutorials/how-to-scrape-web-pages-and-post-content-to-twitter-with-python-3
+
 https://python.plainenglish.io/building-a-news-scraping-twitter-bot-in-python-28eabe17823e
 
 https://www.knowledgehut.com/blog/programming/how-to-work-with-excel-using-python
+
 https://medium.com/aubergine-solutions/working-with-excel-sheets-in-python-using-openpyxl-4f9fd32de87f
 
 https://www.geeksforgeeks.org/md5-hash-python/
