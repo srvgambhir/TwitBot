@@ -10,17 +10,23 @@ from twitter import OAuth, Twitter
 from openpyxl import load_workbook
 import hashlib
 
-# import tokens
+import tokens
 
-from os import environ
+# used for Heorku server
+# from os import environ
 
 # tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
 oauth = OAuth(
-    environ['ACCESS_KEY'],
-    environ['ACCESS_SECRET'],
-    environ['CONSUMER_KEY'],
-    environ['CONSUMER_SECRET']
+    # environ vars used for Heroku server
+    # environ['ACCESS_KEY'],
+    # environ['ACCESS_SECRET'],
+    # environ['CONSUMER_KEY'],
+    # environ['CONSUMER_SECRET']
+    tokens.ACCESS_KEY,
+    tokens.ACCESS_SECRET,
+    tokens.CONSUMER_KEY,
+    tokens.CONSUMER_SECRET
 )
 
 t = Twitter(auth=oauth)
@@ -121,7 +127,7 @@ def tweet():
                     t.statuses.update(status=final)
                     print(final, end='\n\n')
 
-                time.sleep(600)
+                time.sleep(60)
 
             except StopIteration:
                 break
@@ -132,4 +138,4 @@ def tweet():
 # max_row = sheet.max_row
 # print(max_row)
 # if __name__ == "__main__":
-#     main()
+tweet()
