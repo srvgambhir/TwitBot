@@ -3,7 +3,7 @@ import time
 
 from bs4 import BeautifulSoup
 import nltk
-# nltk.download('punkt')
+nltk.download('punkt')
 import requests
 from twitter import OAuth, Twitter
 
