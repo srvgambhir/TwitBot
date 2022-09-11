@@ -2,8 +2,8 @@ import random
 import time
 
 from bs4 import BeautifulSoup
-import nltk
-nltk.download('punkt')
+# import nltk
+# nltk.download('punkt')
 import requests
 from twitter import OAuth, Twitter
 
@@ -14,7 +14,7 @@ import hashlib
 
 from os import environ
 
-tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+# tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
 oauth = OAuth(
     environ['ACCESS_KEY'],
