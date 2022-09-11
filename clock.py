@@ -11,4 +11,4 @@ sched = BlockingScheduler()
 def scheduled_job():
     print('This job is run everyday at midnight.')
     main.tweet()
-
+sched.start()
