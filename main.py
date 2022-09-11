@@ -127,7 +127,7 @@ def main():
                     t.statuses.update(status=final)
                     print(final, end='\n\n')
 
-                time.sleep(60)
+                # time.sleep(60)
 
             except StopIteration:
                 break
