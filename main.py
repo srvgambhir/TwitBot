@@ -10,15 +10,17 @@ from twitter import OAuth, Twitter
 from openpyxl import load_workbook
 import hashlib
 
-import tokens
+# import tokens
+
+from os import environ
 
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
 oauth = OAuth(
-    tokens.ACCESS_TOKEN,
-    tokens.ACCESS_SECRET,
-    tokens.CONSUMER_KEY,
-    tokens.CONSUMER_SECRET
+    environ['ACCESS_KEY'],
+    environ['ACCESS_SECRET'],
+    environ['CONSUMER_KEY'],
+    environ['CONSUMER_SECRET']
 )
 
 t = Twitter(auth=oauth)
@@ -120,7 +122,7 @@ def tweet():
                     print(final, end='\n\n')
 
                 time.sleep(600)
-                
+
             except StopIteration:
                 break
                 # news_iterators[i] = globals()[news_sources[i]]()
