@@ -101,8 +101,9 @@ def main():
     news_iterators = []
     for source in news_sources:
         news_iterators.append(globals()[source]())
-    while True:
-        for i, iterator in enumerate(news_iterators):
+
+    for i, iterator in enumerate(news_iterators):
+        while True:
             try:
                 tweet = next(iterator)
                 title = tweet[0]
@@ -115,13 +116,17 @@ def main():
                 else:
                     add_key(hex_key)
                     final = '"%s" %s' % (title, link)
+                    t.statuses.update(status=final)
                     print(final, end='\n\n')
-                #time.sleep(10)
-            except StopIteration:
-                news_iterators[i] = globals()[news_sources[i]]()
 
-wb = load_workbook(filepath)
-sheet = wb.active
-max_row = sheet.max_row
-print(max_row)
-# main()
+                time.sleep(600)
+            except StopIteration:
+                break
+                # news_iterators[i] = globals()[news_sources[i]]()
+
+# wb = load_workbook(filepath)
+# sheet = wb.active
+# max_row = sheet.max_row
+# print(max_row)
+if __name__ == "__main__":
+    main()
