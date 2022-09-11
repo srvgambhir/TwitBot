@@ -13,6 +13,3 @@ def scheduled_job():
     main.tweet()
 
 
-
-sched.start()
-
