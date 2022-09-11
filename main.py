@@ -95,7 +95,7 @@ def scrape_sn():
         #    yield '"%s" %s' % (title, link)
 
 
-def main():
+def tweet():
     print('Start')
     news_sources = ['scrape_sd', 'scrape_sn']
     news_iterators = []
@@ -120,6 +120,7 @@ def main():
                     print(final, end='\n\n')
 
                 time.sleep(600)
+                
             except StopIteration:
                 break
                 # news_iterators[i] = globals()[news_sources[i]]()
@@ -128,5 +129,5 @@ def main():
 # sheet = wb.active
 # max_row = sheet.max_row
 # print(max_row)
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
