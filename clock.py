@@ -1,6 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import pytz
-import main
+import main_for_heroku
 
 sched = BlockingScheduler(timezone=pytz.timezone('America/New_York'))
 
@@ -11,6 +11,6 @@ sched = BlockingScheduler(timezone=pytz.timezone('America/New_York'))
 @sched.scheduled_job('cron', day_of_week='mon-sun', hour=12)
 def scheduled_job():
     print('This job is run everyday at noon.')
-    main.tweet()
+    main_for_heroku.tweet()
 
 sched.start()
