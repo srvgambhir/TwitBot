@@ -8,7 +8,7 @@ sched = BlockingScheduler(timezone=pytz.timezone('America/New_York'))
 # def timed_job():
 #     print('This job is run every three minutes.')
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=2)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=2, minute=23)
 def scheduled_job():
     print('This job is run everyday at midnight.')
     main.tweet()
