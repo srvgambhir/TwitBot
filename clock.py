@@ -1,7 +1,8 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
+import pytz
 import main
 
-sched = BlockingScheduler()
+sched = BlockingScheduler(timezone=pytz.timezone('America/New_York'))
 
 # @sched.scheduled_job('interval', minutes=3)
 # def timed_job():
@@ -11,5 +12,5 @@ sched = BlockingScheduler()
 def scheduled_job():
     print('This job is run everyday at midnight.')
     main.tweet()
-    
+
 sched.start()
