@@ -7,7 +7,7 @@ sched = BlockingScheduler()
 # def timed_job():
 #     print('This job is run every three minutes.')
 
-@sched.scheduled_job('cron', day_of_week='mon-sun', hour=0)
+@sched.scheduled_job('cron', day_of_week='mon-sun', hour=1)
 def scheduled_job():
     print('This job is run everyday at midnight.')
     main.tweet()
